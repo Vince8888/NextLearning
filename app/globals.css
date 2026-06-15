@@ -31,6 +31,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  min-height: 90vh;
+  background-color: white;
+  border: 1px solid #ccc;
+  margin: 1rem auto;
+  max-width: 600px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

@@ -1,0 +1,61 @@
+/* --- Zone liste --- */
+.todo-list {
+    overflow-y: auto;
+    padding-bottom: 70px;
+}
+
+/* --- Composant enfant visuel --- */
+.child-box {
+    border: 2px dashed #aaa;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #f9f9f9;
+}
+
+/* --- Dot utilitaire --- */
+.dot {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: black;
+    display: inline-block;
+}
+
+/* --- Overlay chargement --- */
+.fetching {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    color: white;
+    font-size: 5em;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- Animation spinner --- */
+.spinner {
+    animation: rotate 1.5s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- Responsive mobile --- */
+@media (max-width: 700px) {
+    .main {
+        padding: 1rem;
+        margin: 1rem;
+    }
+}
