@@ -1,15 +1,11 @@
-# Composant TaskItem
+# Composant TaskList
 
-Ce composant permet d’afficher une tâche ainsi que le bouton **« valider »** associé.
-
-Il remplace, dans le fichier `app/todolist/page.js`, les balises `<li>` et `<button>`.
-
-Le composant reçoit en **props** le libellé de la tâche.
+Au lieu d'avoir une liste de tâches en dur dans le fichier, nous allons récupérer, dans un premier temps, la liste contenue dans le tableau fourni dans la ressource `initialData.js`.
 
 ## Instruction
 
-À partir de la liste des tâches contenue dans le fichier `app/todolist/page.js`, écrire le composant `TaskItem` qui contiendra la balise `<li>`.
+Importer le fichier `initialData.js`.
 
-Le composant recevra la tâche en prop (`task`).
+Nous allons l'importer dans le composant `TaskList`.
 
-Remplacer les balises `<li>` de la page principale par des composants `<TaskItem>`.
+Il suffit ensuite de parcourir les données avec un `map` et d'appeler le composant `TaskItem` pour afficher les différentes tâches.
