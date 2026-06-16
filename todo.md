@@ -1,17 +1,15 @@
-# Footer
+# Composant TaskItem
 
-## Objectifs
+Ce composant permet d’afficher une tâche ainsi que le bouton **« valider »** associé.
 
-- Créer le composant `Footer`.
-- Le composant doit contenir :
-  - le logo AFPA ;
-  - le texte **AFPA**.
-- L'ensemble de la ligne (logo + texte) doit être cliquable.
-- Le footer doit utiliser la classe CSS `mainfooter`.
+Il remplace, dans le fichier `app/todolist/page.js`, les balises `<li>` et `<button>`.
 
-## Intégration
+Le composant reçoit en **props** le libellé de la tâche.
 
-Le fichier `layout.js` est appelé par toutes les pages de l'application.
+## Instruction
 
-- Importer le composant `Footer` dans `layout.js`.
-- Ajouter le composant `Footer` dans le `<body>` afin qu'il soit affiché sur toutes les pages.
+À partir de la liste des tâches contenue dans le fichier `app/todolist/page.js`, écrire le composant `TaskItem` qui contiendra la balise `<li>`.
+
+Le composant recevra la tâche en prop (`task`).
+
+Remplacer les balises `<li>` de la page principale par des composants `<TaskItem>`.
