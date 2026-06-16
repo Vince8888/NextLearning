@@ -1,13 +1,33 @@
-# Utilisation d'une API
+# Loader pour le chargement
 
-Nous allons utiliser l’API qui se trouve à l’adresse : `http://jsonplaceholder.typicode.com/todos/` pour récupérer la liste des tâches à réaliser (à la place du tableau en dur dans le code).
-Nous pouvons faire une sélection par user :
-http://jsonplaceholder.typicode.com/todos/?userId=1
+Il est intéressant d'afficher un loader pour indiquer à l'utilisateur que la page est en train de charger.
 
-En ouvrant cette URL dans un navigateur, vous pouvez afficher la réponse de l’API.
-Pour cela, nous allons utiliser le fetch comme vu dans le tutoriel fourni.
+Installons `react-loader-spinner` qui propose plusieurs formes de loader.
 
-Instruction :
+```bash
+npm install react-loader-spinner --legacy-peer-deps
+```
 
-Sur le modèle donné dans le tutoriel, interroger l'API afin de récupérer une liste de tâches. Remplacer l'initialisation actuelle à partir d'un tableau par la liste reçue de l'API
+Ensuite :
 
+```jsx
+import { Circles } from 'react-loader-spinner';
+
+<Circles
+    color="#4fa94d"
+    ariaLabel="circles-loading"
+    wrapperStyle={{}}
+    wrapperClass=""
+    visible={true}
+/>
+```
+
+Ajouter le spinner dans le `return()` :
+
+```jsx
+<div className="d-flex align-items-center justify-content-center p-2">
+    <Circles visible={!isLoaded} />
+</div>
+```
+
+Gérer un state `isLoaded` qui passera à `true` quand les données seront chargées.

@@ -1,12 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaTrash } from 'react-icons/fa'
 import TaskItem from "../taskitem/TaskItem";
 import AddTask from "../addtask/AddTask";
-import initialData from "../../data/initialData";
 
 export default function TaskList() {
-    const [listTasks, setListTasks] = useState(initialData);
+    const [listTasks, setListTasks] = useState([]);
 
     const changeCompleted = (idTask) => {
         const updatedList = listTasks.map((task) =>
@@ -27,12 +26,28 @@ export default function TaskList() {
         const updatedList = listTasks.filter((element) => element.completed === false);
         setListTasks(updatedList);
     }
+    useEffect(() => {
+        const savedTasks = localStorage.getItem('tasks');
+        if (savedTasks) {
+            setListTasks(JSON.parse(savedTasks));
+        } else {
+            fetch('http://jsonplaceholder.typicode.com/todos/?userId=1')
+                .then((res) => res.json())
+                .then((data) => {
+                    setListTasks(data);
+                });
+        }
+    }, []);
+    useEffect(() => {
+        localStorage.setItem("tasks", JSON.stringify(listTasks));
+    }, [listTasks]);
     return (
         <>
             <ul className="list-group">
                 <li className="d-flex p-2">
                     <button className="btn btn-sm ms-auto btn-outline-success me-2" onClick={deleteTasks}><FaTrash /></button>
                 </li>
+
                 {
                     listTasks.map((task) => {
                         return (
