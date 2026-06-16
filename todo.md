@@ -4,7 +4,7 @@ Au lieu d'avoir une liste de tâches en dur dans le fichier, nous allons récup�
 
 ## Instruction
 
-Importer le fichier `initialData.js`.
+Importer le fichier `initialData.js` (dossier `app/data`).
 
 Nous allons l'importer dans le composant `TaskList`.
 
