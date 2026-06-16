@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import styles from "./page.module.css";
-import TaskItem from '../components/taskitem/TaskItem';
 import TaskList from '../components/tasklist/TaskList';
 
 

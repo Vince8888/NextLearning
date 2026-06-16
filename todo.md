@@ -1,27 +1,15 @@
-# Valider une tâche
+# Ajouter une tâche
 
-Comme nous l'avons vu dans la ressource précédente, il va falloir ici communiquer entre l'enfant (TaskItem) et le parent (TaskList) pour mettre à jour la liste des tâches et donner la possibilité de valider ou non une tâche.
+Pour ajouter une tâche, nous avons besoin d'un input et, ici encore, une communication Enfant->Parent
+L'utilisateur devra renseigner le titre de la tâche. A partir de là, l'objet task sera créé avec un id unique.
 
-Autre chose, la liste des tâches va maintenant être variable (tâche complétée ou non). Un tableau simple ne suffit plus, il va falloir utiliser un state pour mettre à jour l'affichage de la page à chaque modification.
+Créer le composant AddTask, il doit  :
 
-Dernier point, pour utiliser les state ici, il va falloir dire que le composant fonctionne côté client et non côté serveur (c'est le fonctionnement par défaut), avec l'instruction :
+- contenir un input pour saisir la tâche,
+- renvoyer la saisie au parent (TaskList),
+- Effacer le contenu de l'input.
 
-"use client" en début de fichier.
+Saisir le code de la fonction qui va permettre au composant TaskList de rajouter la tâche reçue à la liste des tâches.
+Ajouter le composant AddTask et ses props dans le composant TaskList.
 
-Maintenant, les tâches ne sont plus qu'un champ texte mais un objet contenant :
-
-- l'ID
-- la tâche
-- le champ "completed"
-
-## Dans le composant TaskItem
-
-Faire les modifications nécessaires pour gérer l'objet Task et non plus la chaine de caractère  
-Modifier le bouton pour gérer le clic sur la validation de la tâche  
-Renvoyer l'information au parent (TaskList) afin de mettre à jour la liste  
-
-## Dans le composant TaskList
-
-Créer le state qui va être initialisé par initialData.js  
-Créer la fonction qui va mettre à jour le champ "completed" lié à la tâche  
-Parcourir la liste des tâches avec un map afin d'appeler TaskItem pour chaque tâche  
+Remplaçons le libellé du bouton « Ajouter » par une icone. Dans TaskForm :
