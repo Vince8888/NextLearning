@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { FaTrash } from 'react-icons/fa'
 import TaskItem from "../taskitem/TaskItem";
 import AddTask from "../addtask/AddTask";
-import { Circles } from 'react-loader-spinner'
 
+import { Circles } from 'react-loader-spinner'
 <Circles
     color="#4fa94d"
     ariaLabel="circles-loading"
@@ -35,16 +35,21 @@ export default function TaskList() {
         setListTasks(updatedList);
     }
     useEffect(() => {
-
-        fetch('http://jsonplaceholder.typicode.com/todos/?userId=1')
-            .then((res) => res.json())
-            .then((data) => {
-                setListTasks(data);
-            });
-
+        const savedTasks = localStorage.getItem('tasks');
+        if (savedTasks) {
+            setListTasks(JSON.parse(savedTasks));
+        } else {
+            fetch('http://jsonplaceholder.typicode.com/todos/?userId=1')
+                .then((res) => res.json())
+                .then((data) => {
+                    setListTasks(data);
+                });
+        }
         setIsLoaded(true);
     }, []);
-
+    useEffect(() => {
+        localStorage.setItem("tasks", JSON.stringify(listTasks));
+    }, [listTasks]);
     return (
         <>
             <div className="d-flex align-items-center justify-content-center p-2">
