@@ -9,3 +9,5 @@ Importer le fichier `initialData.js`.
 Nous allons l'importer dans le composant `TaskList`.
 
 Il suffit ensuite de parcourir les données avec un `map` et d'appeler le composant `TaskItem` pour afficher les différentes tâches.
+
+Dans le fichier page.jsx du dossier `todolist`, remplacer toutes les balises `<li>` par le composant `TaskList`
