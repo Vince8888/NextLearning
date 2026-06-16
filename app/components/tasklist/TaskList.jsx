@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-
+import { FaTrash } from 'react-icons/fa'
 import TaskItem from "../taskitem/TaskItem";
 import AddTask from "../addtask/AddTask";
 import initialData from "../../data/initialData";
@@ -23,9 +23,16 @@ export default function TaskList() {
 
         setListTasks(listTasks => [...listTasks, newTask]);
     };
+    const deleteTasks = () => {
+        const updatedList = listTasks.filter((element) => element.completed === false);
+        setListTasks(updatedList);
+    }
     return (
         <>
             <ul className="list-group">
+                <li className="d-flex p-2">
+                    <button className="btn btn-sm ms-auto btn-outline-success me-2" onClick={deleteTasks}><FaTrash /></button>
+                </li>
                 {
                     listTasks.map((task) => {
                         return (
