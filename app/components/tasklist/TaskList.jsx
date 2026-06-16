@@ -1,8 +1,6 @@
 "use client";
 import { useState } from "react";
-
 import TaskItem from "../taskitem/TaskItem";
-import AddTask from "../addtask/AddTask";
 import initialData from "../../data/initialData";
 
 export default function TaskList() {
@@ -14,15 +12,7 @@ export default function TaskList() {
         );
         setListTasks(updatedList);
     };
-    const add = (title) => {
-        const newTask = {
-            id: parseInt(crypto.randomUUID().substring(0, 7), 16),
-            title,
-            completed: false
-        };
 
-        setListTasks(listTasks => [...listTasks, newTask]);
-    };
     return (
         <>
             <ul className="list-group">
@@ -34,7 +24,7 @@ export default function TaskList() {
                     })
                 }
             </ul>
-            <AddTask addTask={(task) => add(task)} />
+
         </>
     )
 }
