@@ -1,13 +1,27 @@
-# Composant TaskList
+# Valider une tâche
 
-Au lieu d'avoir une liste de tâches en dur dans le fichier, nous allons récupérer, dans un premier temps, la liste contenue dans le tableau fourni dans la ressource `initialData.js`.
+Comme nous l'avons vu dans la ressource précédente, il va falloir ici communiquer entre l'enfant (TaskItem) et le parent (TaskList) pour mettre à jour la liste des tâches et donner la possibilité de valider ou non une tâche.
 
-## Instruction
+Autre chose, la liste des tâches va maintenant être variable (tâche complétée ou non). Un tableau simple ne suffit plus, il va falloir utiliser un state pour mettre à jour l'affichage de la page à chaque modification.
 
-Importer le fichier `initialData.js`.
+Dernier point, pour utiliser les state ici, il va falloir dire que le composant fonctionne côté client et non côté serveur (c'est le fonctionnement par défaut), avec l'instruction :
 
-Nous allons l'importer dans le composant `TaskList`.
+"use client" en début de fichier.
 
-Il suffit ensuite de parcourir les données avec un `map` et d'appeler le composant `TaskItem` pour afficher les différentes tâches.
+Maintenant, les tâches ne sont plus qu'un champ texte mais un objet contenant :
 
-Dans le fichier page.jsx du dossier `todolist`, remplacer toutes les balises `<li>` par le composant `TaskList`
+- l'ID
+- la tâche
+- le champ "completed"
+
+## Dans le composant TaskItem
+
+Faire les modifications nécessaires pour gérer l'objet Task et non plus la chaine de caractère  
+Modifier le bouton pour gérer le clic sur la validation de la tâche  
+Renvoyer l'information au parent (TaskList) afin de mettre à jour la liste  
+
+## Dans le composant TaskList
+
+Créer le state qui va être initialisé par initialData.js  
+Créer la fonction qui va mettre à jour le champ "completed" lié à la tâche  
+Parcourir la liste des tâches avec un map afin d'appeler TaskItem pour chaque tâche  
