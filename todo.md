@@ -12,6 +12,6 @@ Créer le composant AddTask, il doit  :
 Saisir le code de la fonction qui va permettre au composant TaskList de rajouter la tâche reçue à la liste des tâches.
 Ajouter le composant AddTask et ses props dans le composant TaskList.
 
-Remplaçons le libellé du bouton « Ajouter » par une icone. Pour cela, dans AddTask, utiliser l'icône de la librairie react-icons :
+Le libellé du bouton « Ajouter » sera défini par une icone. Pour cela, dans AddTask, utiliser l'icône de la librairie react-icons :
 `import { FaPlusSquare } from "react-icons/fa";`
 Et dans le code : `<FaPlusSquare />`
