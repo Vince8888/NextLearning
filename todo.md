@@ -1,33 +1,28 @@
-# Loader pour le chargement
+# Sauvegarde des données
 
-Il est intéressant d'afficher un loader pour indiquer à l'utilisateur que la page est en train de charger.
+L'initialisation de la liste des tâches doit être faite à partir du `localStorage` si elle existe, sinon, on ira la chercher sur l'API.
 
-Installons `react-loader-spinner` qui propose plusieurs formes de loader.
+Nous allons sauvegarder la liste des tâches dans le `localStorage` à chaque modification.
 
-```bash
-npm install react-loader-spinner --legacy-peer-deps
+Les tâches sont sauvegardées à chaque changement de `listTasks` grâce au fonctionnement de la dépendance du `useEffect`.
+
+Le hook `useEffect` s'exécute :
+
+- après chaque rendu du composant ;
+- et seulement si une des dépendances du tableau `[]` a changé.
+
+Ici, la dépendance est :
+
+```javascript
+[listTasks]
 ```
 
-Ensuite :
+Donc :
 
-```jsx
-import { Circles } from 'react-loader-spinner';
+À chaque fois que `listTasks` change, le code :
 
-<Circles
-    color="#4fa94d"
-    ariaLabel="circles-loading"
-    wrapperStyle={{}}
-    wrapperClass=""
-    visible={true}
-/>
+```javascript
+localStorage.setItem(...)
 ```
 
-Ajouter le spinner dans le `return()` :
-
-```jsx
-<div className="d-flex align-items-center justify-content-center p-2">
-    <Circles visible={!isLoaded} />
-</div>
-```
-
-Gérer un state `isLoaded` qui passera à `true` quand les données seront chargées.
+est exécuté, ce qui met à jour les données dans le `localStorage`.
