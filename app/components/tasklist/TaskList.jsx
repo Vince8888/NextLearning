@@ -1,74 +1,91 @@
 "use client";
+
 import { useEffect, useState } from "react";
-import { FaTrash } from 'react-icons/fa'
+import { FaTrash } from "react-icons/fa";
 import TaskItem from "../taskitem/TaskItem";
 import AddTask from "../addtask/AddTask";
+import { Circles } from "react-loader-spinner";
 
-import { Circles } from 'react-loader-spinner'
-<Circles
-    color="#4fa94d"
-    ariaLabel="circles-loading"
-    wrapperStyle={{}}
-    wrapperClass=""
-    visible={true}
-/>
 export default function TaskList() {
     const [listTasks, setListTasks] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
+
     const changeCompleted = (idTask) => {
         const updatedList = listTasks.map((task) =>
-            task.id === idTask ? { ...task, completed: !task.completed } : task
+            task.id === idTask
+                ? { ...task, completed: !task.completed }
+                : task
         );
         setListTasks(updatedList);
     };
+
     const add = (title) => {
         const newTask = {
-            id: parseInt(crypto.randomUUID().substring(0, 7), 16),
+            id: crypto.randomUUID(),
             title,
             completed: false
         };
 
-        setListTasks(listTasks => [...listTasks, newTask]);
+        setListTasks((prev) => [...prev, newTask]);
     };
+
     const deleteTasks = () => {
-        const updatedList = listTasks.filter((element) => element.completed === false);
-        setListTasks(updatedList);
-    }
+        setListTasks((prev) =>
+            prev.filter((t) => !t.completed)
+        );
+    };
+
     useEffect(() => {
-        const savedTasks = localStorage.getItem('tasks');
+        const savedTasks = localStorage.getItem("tasks");
+
         if (savedTasks) {
             setListTasks(JSON.parse(savedTasks));
+            setIsLoaded(true);
         } else {
-            fetch('http://jsonplaceholder.typicode.com/todos/?userId=1')
+            fetch("https://jsonplaceholder.typicode.com/todos/?userId=1")
                 .then((res) => res.json())
                 .then((data) => {
                     setListTasks(data);
+                    setIsLoaded(true);
                 });
         }
-        setIsLoaded(true);
     }, []);
+
     useEffect(() => {
-        localStorage.setItem("tasks", JSON.stringify(listTasks));
+        localStorage.setItem(
+            "tasks",
+            JSON.stringify(listTasks)
+        );
     }, [listTasks]);
+
     return (
         <>
-            <div className="d-flex align-items-center justify-content-center p-2">
-                <Circles visible={!isLoaded} />
-            </div>
+            {!isLoaded && (
+                <div className="d-flex align-items-center justify-content-center p-2">
+                    <Circles visible={true} />
+                </div>
+            )}
+
             <ul className="list-group">
                 <li className="d-flex p-2">
-                    <button className="btn btn-sm ms-auto btn-outline-success me-2" onClick={deleteTasks}><FaTrash /></button>
+                    <button
+                        className="btn btn-sm ms-auto btn-outline-success me-2"
+                        onClick={deleteTasks}
+                    >
+                        <FaTrash />
+                    </button>
                 </li>
 
-                {
-                    listTasks.map((task) => {
-                        return (
-                            <TaskItem key={task.id} task={task} onSend={(id) => changeCompleted(id)} />
-                        )
-                    })
-                }
+                {listTasks.map((task) => (
+                    <TaskItem
+                        key={task.id}
+                        task={task}
+                        onSend={changeCompleted}
+                    />
+                ))}
             </ul>
-            <AddTask addTask={(task) => add(task)} />
+
+            <AddTask addTask={add} />
         </>
-    )
+    );
 }
