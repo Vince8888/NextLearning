@@ -27,20 +27,13 @@ export default function TaskList() {
         setListTasks(updatedList);
     }
     useEffect(() => {
-        const savedTasks = localStorage.getItem('tasks');
-        if (savedTasks) {
-            setListTasks(JSON.parse(savedTasks));
-        } else {
-            fetch('http://jsonplaceholder.typicode.com/todos/?userId=1')
-                .then((res) => res.json())
-                .then((data) => {
-                    setListTasks(data);
-                });
-        }
+        fetch('http://jsonplaceholder.typicode.com/todos/?userId=1')
+            .then((res) => res.json())
+            .then((data) => {
+                setListTasks(data);
+            });
+
     }, []);
-    useEffect(() => {
-        localStorage.setItem("tasks", JSON.stringify(listTasks));
-    }, [listTasks]);
     return (
         <>
             <ul className="list-group">
